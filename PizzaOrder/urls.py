@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     #http://localhost:8000/PizzaLair
-    path('', views.landingPage, name="landingPage"),
+    path('', views.order, name="order-index"),
 ]
