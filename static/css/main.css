@@ -2,6 +2,10 @@ body {
     background-color: rgb(255, 215, 113);
 }
 
+#logo {
+    width: 100px;
+}
+
 .menu-title {
     padding-top: 3%;
 }
