@@ -4,6 +4,10 @@ body {
 
 #logo {
     width: 100px;
+    background-color: yellow;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
 }
 
 .menu-title {
