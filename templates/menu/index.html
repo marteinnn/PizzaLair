@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="menu">
+    <div class="menu-page">
+    <div class="menu-title">
         <h1>Welcome to the menu page!</h1>
     </div>
     {% for pizza in pizzas %}
@@ -9,7 +10,8 @@
         {% else %}
             <p>Cheap!</p>
         {% endif %}
-        <h4>{{ pizza.name }}</h4>
-        <p>{{ pizza.price }}kr</p>
+        <h4 class="pizza-name">{{ pizza.name }}</h4>
+        <p class="pizza-price">{{ pizza.price }}kr</p>
     {% endfor %}
+    </div>
 {% endblock %}

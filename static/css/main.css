@@ -1,3 +1,7 @@
-.menu {
-    border-bottom: solid 2px rgba(155, 155, 155, .5);
+body {
+    background-color: rgb(255, 215, 113);
+}
+
+.menu-title {
+    padding-top: 3%;
 }
