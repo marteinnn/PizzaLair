@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'menu.apps.MenuConfig',
     'PizzaOrder.apps.PizzaorderConfig',
-    'frontpage.apps.FrontpageConfig'
+    'frontpage.apps.FrontpageConfig',
+    'deals.apps.DealsConfig',
 ]
 
 MIDDLEWARE = [
