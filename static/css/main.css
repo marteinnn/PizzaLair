@@ -13,6 +13,13 @@ body {
     border-radius: 10px;
 }
 
+.nav-link.active {
+  color: #000;
+  background-color: #fff;
+}
+
+
+
 
 .menu-page {
     background-color: green;
