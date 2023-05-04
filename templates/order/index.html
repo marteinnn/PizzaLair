@@ -1,4 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Welcome to the order page!</h1>
+    <div class="order-page">
+    <div class="order-title">
+        <h1>Welcome to the Order page!</h1>
+    </div>
+        <div class="order-items">
+            {% for pizza in pizzas %}
+                {% include 'order/pick_pizza.html' with pizza=pizza %}
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
