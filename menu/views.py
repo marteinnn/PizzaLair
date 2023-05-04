@@ -1,11 +1,8 @@
 from django.shortcuts import render
-
-pizzas = [
-    {'name': 'Margarita', 'price': 1200},
-    {'name': 'Pepperoni', 'price': 1600},
-    {'name': 'Vegan', 'price': 1600},
-]
+from menu.models import Pizza
 
 # Create your views here.
 def menu(request):
-    return render(request, 'menu/index.html', context={ 'pizzas': pizzas })
+    return render(request, 'menu/index.html', {
+        'pizzas': Pizza.objects.all()
+    })
