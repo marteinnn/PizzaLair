@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Welcome to the deals page!</h1>
+    <h1 id="deals-title">Welcome to the deals page!</h1>
+        <div class="deals-items">
+            {% for deal in alldeals %}
+                {% include 'deals/single-deal.html' with deal=deal %}
+            {% endfor %}
+        </div>
 {% endblock %}
