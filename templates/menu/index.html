@@ -1,14 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="menu-page">
-    <div class="menu-title">
-        <h1>Welcome to the menu page!</h1>
-    </div>
+        <div class="menu-title">
+            <h1>The menu</h1>
+        </div>
         <div class="menu-items">
-            {% for pizza in pizzas %}
-                {% include 'menu/single_pizza.html' with pizza=pizza %}
-            {% endfor %}
+            <div class="row">
+                {% for pizza in pizzas %}
+                    <div class="col-md-4">
+                        {% include 'menu/single_pizza.html' with pizza=pizza %}
+                    </div>
+                    {% if forloop.counter|divisibleby:3 %}
+                        </div><div class="row">
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}
+
 
