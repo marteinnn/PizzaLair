@@ -18,12 +18,16 @@
           <a class="nav-link" href="{% url 'deals-index' %}">Deals</a>
         </li>
           {% if user.is_authenticated %}
+              <li><a class="nav-link" href="{% url 'profile' %}">Profile</a></li>
               <li><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
           {% else %}
               <li><a class="nav-link" href="{% url 'login' %}">Login</a></li>
               <li><a class="nav-link" href="{% url 'register' %}">Register</a></li>
           {% endif %}
       </ul>
+        {% if user.is_authenticated %}
+            <img src="{{ user.profile.profile_image }}" class="profile-image" />
+        {% endif %}
     </div>
   </div>
 </nav>
