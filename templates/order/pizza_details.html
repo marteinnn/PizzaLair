@@ -10,6 +10,11 @@
         {% endif %}
 
         <h1 class="details-name">{{ pizza.name }}</h1>
+    <ul>
+    {% for topping in pizza.toppings.all %}
+    <li>{{ topping.name }}</li>
+    {% endfor %}
+    </ul>
         <p>{{ pizza.description }}</p>
         <h2>{{ pizza.price }} $</h2>
     </div>
