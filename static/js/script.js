@@ -25,7 +25,7 @@ $(document).ready(function() {
            type: 'GET',
            success: function(resp) {
                 let newHtml = resp.data.map(d => {
-                    return `<div class="pizza-item">
+                    return `<div class="pizza_item">
                             <img class="pizza-image" src="../static/images/${d.image}"/>
                             <h4>${d.name}</h4>
                             <p>${d.description}</p>
@@ -53,7 +53,7 @@ $(document).ready(function() {
            type: 'GET',
            success: function(resp) {
                 let newHtml = resp.data.map(d => {
-                    return `<div class="pizza-item">
+                    return `<div class="pizza_item">
                             <img class="pizza-image" src="../static/images/${d.image}"/>
                             <h4>${d.name}</h4>
                             <p>${d.description}</p>
@@ -80,7 +80,61 @@ $(document).ready(function() {
            type: 'GET',
            success: function(resp) {
                 let newHtml = resp.data.map(d => {
-                    return `<div class="pizza-item">
+                    return `<div class="pizza_item">
+                            <img class="pizza-image" src="../static/images/${d.image}"/>
+                            <h4>${d.name}</h4>
+                            <p>${d.description}</p>
+                            <h2>${d.price} $</h2>
+                            <button>Add to cart!</button>
+                            </div>`
+                });
+                $('.order-items').html(newHtml.join(''));
+                $('#search-box').val('')
+
+           },
+           error: function(xhr, status, error) {
+               console.error(error);
+           }
+       })
+    });
+});
+
+$(document).ready(function() {
+    $('#name-btn').on('click', function(e) {
+       e.preventDefault();
+       $.ajax({
+           url: '/order?check_filter=sortbyname',
+           type: 'GET',
+           success: function(resp) {
+                let newHtml = resp.data.map(d => {
+                    return `<div class="pizza_item">
+                            <img class="pizza-image" src="../static/images/${d.image}"/>
+                            <h4>${d.name}</h4>
+                            <p>${d.description}</p>
+                            <h2>${d.price} $</h2>
+                            <button>Add to cart!</button>
+                            </div>`
+                });
+                $('.order-items').html(newHtml.join(''));
+                $('#search-box').val('')
+
+           },
+           error: function(xhr, status, error) {
+               console.error(error);
+           }
+       })
+    });
+});
+
+$(document).ready(function() {
+    $('#price-btn').on('click', function(e) {
+       e.preventDefault();
+       $.ajax({
+           url: '/order?check_filter=sortbyprice',
+           type: 'GET',
+           success: function(resp) {
+                let newHtml = resp.data.map(d => {
+                    return `<div class="pizza_item">
                             <img class="pizza-image" src="../static/images/${d.image}"/>
                             <h4>${d.name}</h4>
                             <p>${d.description}</p>
