@@ -24,6 +24,9 @@
               <li><a class="nav-link" href="{% url 'login' %}">Login</a></li>
               <li><a class="nav-link" href="{% url 'register' %}">Register</a></li>
           {% endif %}
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'cart-index' %}">Your cart</a>
       </ul>
         {% if user.is_authenticated %}
             <img src="{{ user.profile.profile_image }}" class="profile-image" />
