@@ -40,6 +40,30 @@ def order(request):
                 'vegan': x.vegan
             } for x in Pizza.objects.filter(spicy__icontains=True)]
             return JsonResponse({'data': pizzas})
+        elif filter == 'sortbyname':
+            pizzas = [{
+                'id': x.PID,
+                'name': x.name,
+                'price': x.price,
+                'image': x.image,
+                'description': x.description,
+                'spicy': x.spicy,
+                'vegan': x.vegan
+            } for x in Pizza.objects.all().order_by('name')]
+            return JsonResponse({'data': pizzas})
+
+        elif filter == 'sortbyprice':
+            pizzas = [{
+                'id': x.PID,
+                'name': x.name,
+                'price': x.price,
+                'image': x.image,
+                'description': x.description,
+                'spicy': x.spicy,
+                'vegan': x.vegan
+            } for x in Pizza.objects.all().order_by('price')]
+            return JsonResponse({'data': pizzas})
+
     return render(request, 'order/index.html', {
         'pizzas': Pizza.objects.all()
     })
