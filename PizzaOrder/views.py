@@ -1,7 +1,46 @@
+from django.http import JsonResponse
 from django.shortcuts import render
-from menu.models import Pizza
+from menu.models import Pizza, PizzaToppings, Topping
+
 # Create your views here.
 def order(request):
+    if 'search_filter' in request.GET:
+        search_filter = request.GET['search_filter']
+        pizzas = [ {
+            'id': x.PID,
+            'name': x.name,
+            'price': x.price,
+            'image': x.image,
+            'description': x.description,
+            'spicy': x.spicy,
+            'vegan': x.vegan
+        } for x in Pizza.objects.filter(name__icontains=search_filter)]
+        return JsonResponse({ 'data': pizzas })
+    elif 'check_filter' in request.GET:
+        filter = request.GET['check_filter']
+        if filter == 'vegan':
+            pizzas = [{
+                'id': x.PID,
+                'name': x.name,
+                'price': x.price,
+                'image': x.image,
+                'description': x.description,
+                'spicy': x.spicy,
+                'vegan': x.vegan
+            } for x in Pizza.objects.filter(vegan__icontains=True)]
+            return JsonResponse({'data': pizzas})
+        elif filter == 'spicy':
+            pizzas = [{
+                'id': x.PID,
+                'name': x.name,
+                'price': x.price,
+                'image': x.image,
+                'description': x.description,
+                'spicy': x.spicy,
+                'vegan': x.vegan
+            } for x in Pizza.objects.filter(spicy__icontains=True)]
+            return JsonResponse({'data': pizzas})
     return render(request, 'order/index.html', {
         'pizzas': Pizza.objects.all()
     })
+
