@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="pizza-details">
+        <img class="details-img" src="../static/images/{{ pizza.image }}">
+        {% if pizza.vegan == True %}
+            <img class="vegan-pic" src="../static/images/vegan.png">
+        {% endif %}
+        {% if pizza.spicy == True %}
+            <img class="spicy-pic" src="../static/images/spicy.png">
+        {% endif %}
+
+        <h1 class="details-name">{{ pizza.name }}</h1>
+        <p>{{ pizza.description }}</p>
+        <h2>{{ pizza.price }} $</h2>
+    </div>
+{% endblock %}

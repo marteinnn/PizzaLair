@@ -227,6 +227,20 @@ h1 {
   }
 }
 
+.details-img {
+    width: 50%;
+    height: 50%;
+}
+
+.vegan-pic {
+    width: 10%;
+    height: 10%;
+}
+
+.spicy-pic {
+    width: 10%;
+    height: 10%;
+}
 
 
 
