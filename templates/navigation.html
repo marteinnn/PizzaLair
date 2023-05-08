@@ -26,7 +26,7 @@
           {% endif %}
 
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'cart-index' %}">Your cart</a>
+          <a class="nav-link" href="{% url 'cart' %}">Cart</a>
       </ul>
         {% if user.is_authenticated %}
             <img src="{{ user.profile.profile_image }}" class="profile-image" />
