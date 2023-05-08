@@ -38,17 +38,7 @@ body {
 }
 
 
-@keyframes animated-border {
-  0% {
-    box-shadow: 0 0 0 0 rgba(255,255,255,0.4);
-  }
-  100% {
-     box-shadow: 0 0 0 20px rgba(255,255,255,0);
-  }
-}
-
 #box {
-  animation: animated-border 1.5s;
   font-family: Arial;
   font-size: 15px;
   line-height: 25px;
@@ -58,7 +48,7 @@ body {
   border-radius: 10px;
   padding: 15px;
   width: 90%;
-  background-color: rgb(255, 200, 0)
+  background-color: rgb(255, 150, 0)
 }
 
 .row{
@@ -70,4 +60,72 @@ body {
 }
 
 
+.deal-item {
+    border: 4px solid red;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.deal-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+#deals-title {
+    font-family: italic;
+    font-size: 50px;
+    text-align: center;
+}
+
+/* center the login form on the page */
+form {
+  margin: 0 auto;
+  max-width: 400px;
+}
+
+/* style the form inputs */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* change the border color on focus */
+input[type=text]:focus, input[type=password]:focus {
+  border: 2px solid #007bff;
+}
+
+/* style the login button */
+button[type=submit] {
+  background-color: #007bff;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* change the button color on hover */
+button[type=submit]:hover {
+  background-color: #0069d9;
+}
+
+/* add some space between the form and the page title */
+h1 {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.btn-signup {
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
