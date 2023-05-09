@@ -153,28 +153,6 @@ $(document).ready(function() {
     });
 });
 
-let btns = document.querySelectorAll(".pizza_item button")
 
-btns.forEach(btn=>{
-    btn.addEventListener("click", addToCart)
-})
 
-function addToCart(e){
-    let pizza_id = e.target.value
-    let url = "cart/add_to_cart"
 
-    let data = {id:pizza_id}
-
-    fetch(url, {
-        method: 'POST',
-        headers: {"Content-Type":"application/json", 'X-CSRFToken': csrftoken},
-        body: JSON.stringify(data)
-    })
-    .then(res=>res.json())
-    .then(data=>{
-        console.log(data)
-    })
-    .catch(error=>{
-        console.log(error)
-    })
-}
