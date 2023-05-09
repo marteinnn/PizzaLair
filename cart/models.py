@@ -8,7 +8,7 @@ import uuid
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date_added = models.DateTimeField(auto_now_add=True)
-
+    total_price = models.FloatField(default=0)
 
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
