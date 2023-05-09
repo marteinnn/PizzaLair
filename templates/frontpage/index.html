@@ -1,4 +1,40 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Welcome to the Front page!</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="pizza-of-the-week">
+                    <h2>Pizza of the Week</h2>
+                    <div id="box" class="pizza--item border border-danger border-5 rounded p-3">
+                        <a href="/order/">
+                            <img class="pizza--image img-fluid rounded" src="../static/images/diablo.png" alt="Diablo"/>
+                            <h4>Diablo</h4>
+                            <p>Perfect for those who like intense heat.</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pizza-box">
+                    <h2>Special Deals</h2>
+                    <div id="box_1" class="pizza--item border border-danger border-5 rounded p-3" style="height: 205px;">
+                        <a href="/deals/">
+                            <img class="pizza--image img-fluid rounded" src="../static/images/twoforone.png" alt="TwoForOne"/>
+                            <h4>2 for 1</h4>
+                            <p>Order one pizza and get another one for free!</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="pizza-box">
+                    <div id="box_2" class="pizza--item border border-danger border-5 rounded p-3" style="height: 275px;">
+                        <a href="/deals/">
+                            <img class="pizza--image img-fluid rounded" src="../static/images/familyorder.png" alt="FamilyOffer"/>
+                            <h4>Family offer</h4>
+                            <p>Give yourself a break from the kitchen!</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
