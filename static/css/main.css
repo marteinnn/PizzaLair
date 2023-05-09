@@ -245,3 +245,36 @@ h1 {
 
 
 
+.pizza--item {
+    background-color: rgb(255, 190, 0);
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.pizza--image {
+    width: 50%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.pizza-box a {
+    text-decoration: none;
+}
+
+.pizza-of-the-week a {
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
