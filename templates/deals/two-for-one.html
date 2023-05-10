@@ -3,18 +3,27 @@
     <h1>Two for one!</h1>
 <form method="POST" action="{% url 'add_deal_to_cart' 1 2 %}">
   {% csrf_token %}
-  <label for="pizza">Pizza 1: </label>
-  <select name="pizza-select" id="pizza-select">
+  <label for="pizzaselector">Pizza 1: </label>
+  <select name="pizzaselect" id="pizzaselector">
     {% for pizza in pizzas %}
-      <option value="{{ pizza.id }}">{{ pizza.name }}</option>
+      <option id="{{ pizza.id }}">{{ pizza.name }}</option>
     {% endfor %}
   </select>
-<label for="pizza1">Pizza 2: </label>
-  <select name="pizza-select1" id="pizza-select1">
+<label for="pizzaselector1">Pizza 2: </label>
+  <select name="pizzaselect" id="pizzaselector1">
     {% for pizza in pizzas %}
-      <option value="{{ pizza.id }}">{{ pizza.name }}</option>
+      <option id="{{ pizza.PID }}">{{ pizza.name }}</option>
     {% endfor %}
   </select>
-  <button type="submit">Submit</button>
-
+  <button type="button" onclick="submitForm()">Submit</button>
+<script>
+    function submitForm() {
+      const pizza_selected = document.querySelector('#pizzaselector');
+      const pizza_selected1 = document.querySelector('#pizzaselector1');
+      const pizzaId = pizza_selected.selectedIndex+1;
+      const pizza1Id = pizza_selected1.selectedIndex+1;
+        let url = "{% url 'add_deal_to_cart' 0 0 %}".replace('0', pizzaId).replace('0', pizza1Id);
+      window.location.href = url;
+    }
+  </script>
 {% endblock %}
