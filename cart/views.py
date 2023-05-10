@@ -36,3 +36,6 @@ def cart_detail(request):
 @login_required
 def checkout(request):
     return render(request, 'cart/checkout.html')
+
+def payment(request):
+    return render(request, 'cart/payment.html')

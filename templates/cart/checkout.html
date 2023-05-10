@@ -1,37 +1,80 @@
 {% extends 'base.html' %}
 {% block content %}
   <head>
-    <title>Contact Information</title>
+    <title>Contact Form</title>
   </head>
   <body>
-    <h1>Contact Information</h1>
-    <form>
-      <label for="full-name">Full Name:</label>
-      <input type="text" id="full-name" name="full-name" required><br>
-
-      <label for="street-name">Street Name:</label>
-      <input type="text" id="street-name" name="street-name" required><br>
-
-      <label for="house-number">House Number:</label>
-      <input type="text" id="house-number" name="house-number" required><br>
-
-      <label for="city">City:</label>
-      <input type="text" id="city" name="city" required><br>
-
-      <label for="country">Country:</label>
-      <select id="country" name="country" required>
-        <option value="" disabled selected>Select your country</option>
-        <option value="USA">United States</option>
-        <option value="UK">United Kingdom</option>
-        <option value="Iceland">Iceland</option>
-        <option value="Australia">Australia</option>
-      </select><br>
-
-      <label for="postal-code">Postal Code:</label>
-      <input type="text" id="postal-code" name="postal-code" required><br>
-
-      <input type="submit" value="Submit">
+    <h1>Contact Form</h1>
+    {% if message %}
+      <p>{{ message }}</p>
+    {% endif %}
+    <form id="contact-form" method="post" action="{% url 'payment' %}">
+      {% csrf_token %}
+      <div>
+        <label for="full-name">Full name:</label>
+        <input type="text" id="full-name" name="full-name" required>
+      </div>
+      <div>
+        <label for="street-name">Street name:</label>
+        <input type="text" id="street-name" name="street-name" required>
+      </div>
+      <div>
+        <label for="house-number">House number:</label>
+        <input type="text" id="house-number" name="house-number" required>
+      </div>
+      <div>
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required>
+      </div>
+      <div>
+        <label for="country">Country:</label>
+        <select id="country" name="country" required>
+          <option value="">-- Select a country --</option>
+          <option value="USA">United States of America</option>
+          <option value="UK">United Kingdom</option>
+          <option value="CA">Canada</option>
+          <option value="MX">Mexico</option>
+        </select>
+      </div>
+      <div>
+        <label for="postal-code">Postal code:</label>
+        <input type="text" id="postal-code" name="postal-code" required>
+      </div>
+      <button type="submit">Submit</button>
     </form>
-  </body>
+    <script>
+        var form = document.getElementById('contact-form');
+
+// Check if form data is stored in sessionStorage
+if (sessionStorage.getItem('form_data')) {
+  var data = JSON.parse(sessionStorage.getItem('form_data'));
+  form.elements['full-name'].value = data.full_name;
+  form.elements['street-name'].value = data.street_name;
+  form.elements['house-number'].value = data.house_number;
+  form.elements['city'].value = data.city;
+  form.elements['country'].value = data.country;
+  form.elements['postal-code'].value = data.postal_code;
+
+  // Remove form data from sessionStorage
+  sessionStorage.removeItem('form_data');
+}
+
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+  sessionStorage.setItem('form_data', JSON.stringify({
+    'full_name': form.elements['full-name'].value,
+    'street_name': form.elements['street-name'].value,
+    'house_number': form.elements['house-number'].value,
+    'city': form.elements['city'].value,
+    'country': form.elements['country'].value,
+    'postal_code': form.elements['postal-code'].value,
+  }));
+  window.location.href = "{% url 'payment' %}";
+});
+
+
+    </script>
+
+</body>
 
 {% endblock %}
