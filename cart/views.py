@@ -84,3 +84,9 @@ def checkout(request):
 
 def payment(request):
     return render(request, 'cart/payment.html')
+
+def review(request):
+    return render(request, 'cart/review.html')
+
+def pickpayment(request):
+    return render(request, 'cart/pick-payment.html')

@@ -8,7 +8,7 @@
     {% if message %}
       <p>{{ message }}</p>
     {% endif %}
-    <form id="contact-form" method="post" action="{% url 'payment' %}">
+    <form id="contact-form" method="post" action="{% url 'pick-payment' %}">
       {% csrf_token %}
       <div>
         <label for="full-name">Full name:</label>

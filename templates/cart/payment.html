@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
+  <head>
+    <title>Payment Form</title>
+  </head>
   <body>
     <h1>Payment form</h1>
     {% if message %}
       <p>{{ message }}</p>
     {% endif %}
-    <form id="payment-form" method="post" action="{% url 'payment' %}">
+    <form id="payment-form" method="post" action="{% url 'review' %}">
       {% csrf_token %}
-
-        <input type="checkbox" id="pay-checkbox" name="pay-checkbox">
-      <label for="pay-checkbox" class="pay-label" >Pay when you get there</label>
 
       <div>
         <label for="full-name">Full name:</label>
@@ -27,9 +27,6 @@
         <label for="cvv">CVV:</label>
         <input type="text" id="cvv" name="cvv" required>
       </div>
-
-      <input type="checkbox" id="billing-address-checkbox" name="billing-address-checkbox">
-      <label for="billing-address-checkbox">Billing address same as shipping address</label>
 
       <div id="billing-address-section">
         <div>
@@ -64,5 +61,4 @@
 
     <a href="{% url 'checkout' %}">Back</a>
 
-  </body>
 {% endblock %}
