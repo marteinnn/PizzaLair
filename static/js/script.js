@@ -1,21 +1,3 @@
-function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
-const csrftoken = getCookie('csrftoken');
-
-
 $(document).ready(function() {
     $('#search-btn').on('click', function(e) {
        e.preventDefault();
@@ -25,13 +7,16 @@ $(document).ready(function() {
            type: 'GET',
            success: function(resp) {
                 let newHtml = resp.data.map(d => {
-                    return `<div class="pizza_item">
-                            <img class="pizza-image" src="../static/images/${d.image}"/>
-                            <h4>${d.name}</h4>
-                            <p>${d.description}</p>
-                            <h2>${d.price} $</h2>
-                            <button>Add to cart!</button>
-                            </div>`
+                    return `<a href="/order/${d.id}">
+                                <div class="pizza_item">
+                                    <img class="pizza-image" src="../static/images/${d.image}"/>
+                                    <h4>${d.name}</h4>
+                                    <p>
+                                    ${d.toppings}
+                                    </p>
+                                    <h2>${d.price} $</h2>
+                                </div>
+                            </a>`
                 });
                 $('.order-items').html(newHtml.join(''));
                 $('#search-box').val('')
@@ -53,15 +38,18 @@ $(document).ready(function() {
            type: 'GET',
            success: function(resp) {
                 let newHtml = resp.data.map(d => {
-                    return `<div class="pizza_item">
-                            <img class="pizza-image" src="../static/images/${d.image}"/>
-                            <h4>${d.name}</h4>
-                            <p>${d.description}</p>
-                            <h2>${d.price} $</h2>
-                            <button>Add to cart!</button>
-                            </div>`
+                    return `<a href="/order/${d.id}">
+                                <div class="pizza_item">
+                                    <img class="pizza-image" src="../static/images/${d.image}"/>
+                                    <h4>${d.name}</h4>
+                                    <p>
+                                    ${d.toppings}
+                                    </p>
+                                    <h2>${d.price} $</h2>
+                                </div>
+                            </a>`
                 });
-                $('.order-items').html(newHtml.join(''));
+                $(".order-items").html(newHtml.join(''));
                 $('#search-box').val('')
 
            },
@@ -80,13 +68,16 @@ $(document).ready(function() {
            type: 'GET',
            success: function(resp) {
                 let newHtml = resp.data.map(d => {
-                    return `<div class="pizza_item">
-                            <img class="pizza-image" src="../static/images/${d.image}"/>
-                            <h4>${d.name}</h4>
-                            <p>${d.description}</p>
-                            <h2>${d.price} $</h2>
-                            <button>Add to cart!</button>
-                            </div>`
+                    return `<a href="/order/${d.id}">
+                                <div class="pizza_item">
+                                    <img class="pizza-image" src="../static/images/${d.image}"/>
+                                    <h4>${d.name}</h4>
+                                    <p>
+                                    ${d.toppings}
+                                    </p>
+                                    <h2>${d.price} $</h2>
+                                </div>
+                            </a>`
                 });
                 $('.order-items').html(newHtml.join(''));
                 $('#search-box').val('')
@@ -107,13 +98,16 @@ $(document).ready(function() {
            type: 'GET',
            success: function(resp) {
                 let newHtml = resp.data.map(d => {
-                    return `<div class="pizza_item">
-                            <img class="pizza-image" src="../static/images/${d.image}"/>
-                            <h4>${d.name}</h4>
-                            <p>${d.description}</p>
-                            <h2>${d.price} $</h2>
-                            <button>Add to cart!</button>
-                            </div>`
+                    return `<a href="/order/${d.id}">
+                                <div class="pizza_item">
+                                    <img class="pizza-image" src="../static/images/${d.image}"/>
+                                    <h4>${d.name}</h4>
+                                    <p>
+                                    ${d.toppings}
+                                    </p>
+                                    <h2>${d.price} $</h2>
+                                </div>
+                            </a>`
                 });
                 $('.order-items').html(newHtml.join(''));
                 $('#search-box').val('')
@@ -153,6 +147,4 @@ $(document).ready(function() {
     });
 });
 
-
-
-
+let btns = document.querySelectorAll(".pizza_item button")
