@@ -2,13 +2,18 @@
 
 {% block content %}
   <h1>Shopping Cart</h1>
-  <ul>
-    {% for cart_item in cart_items %}
-      <li>{{ cart_item.name }} - {{ cart_item.quantity }} - <a href="{% url 'remove_from_cart' cart_item.id %}">Remove</a></li>
-    {% empty %}
-      <li>Your cart is empty</li>
-    {% endfor %}
-  </ul>
-    <h2>${{ total_price }}</h2>
+  {% if cart_items|length == 0 and cart_item_deals|length == 0 %}
+    <p>Your cart is empty</p>
+  {% else %}
+    <ul>
+      {% for cart_item in cart_items %}
+        <li>{{ cart_item.name }} - {{ cart_item.quantity }} - <a href="{% url 'remove_from_cart' cart_item.id %}">Remove</a></li>
+      {% endfor %}
+      {% for cart_item in cart_item_deals %}
+        <li>{{ cart_item.name }} - {{ cart_item.quantity }} - <a href="{% url 'remove_deal_from_cart' cart_item.id %}">Remove</a></li>
+      {% endfor %}
+    </ul>
     <a href="{% url 'checkout' %}">Proceed To Checkout</a>
+  {% endif %}
+    <h2>${{ total_price }}</h2>
 {% endblock %}
