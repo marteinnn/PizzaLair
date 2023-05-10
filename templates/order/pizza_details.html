@@ -11,6 +11,10 @@
     </ul>
     <p>{{ pizza.description }}</p>
     <h2>{{ pizza.price }} $</h2>
+    <form method="POST" action="{% url 'add_to_cart' pizza.PID %}">
+      {% csrf_token %}
+      <button type="submit">Add to cart</button>
+    </form>
   </div>
   {% if pizza.vegan == True %}
   <img class="vegan-pic" src="../static/images/vegan.png">
