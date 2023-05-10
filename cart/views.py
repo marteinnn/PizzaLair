@@ -6,10 +6,11 @@ from django.contrib.auth.decorators import login_required
 def add_to_cart(request, id):
     cart, created = Cart.objects.get_or_create(user=request.user)
     pizza = get_object_or_404(Pizza, PID=id)
-    cart_item, created = CartItem.objects.get_or_create(cart=cart, pizza=pizza)
+    cart_item, created = CartItem.objects.get_or_create(cart=cart, pizza=pizza, name=pizza.name)
     cart.total_price += pizza.price * cart_item.quantity
     cart.save()
     if not created:
+        cart_item.name = str(pizza.name)
         cart_item.quantity += 1
         cart_item.save()
     return redirect('cart')
@@ -17,8 +18,8 @@ def add_to_cart(request, id):
 def add_pofmonth_to_cart(request, id):
     cart, created = Cart.objects.get_or_create(user=request.user)
     pizza = get_object_or_404(Pizza, PID=id)
-    pizza.name = "Pizza of the month"
-    cart_item, created = CartItem.objects.get_or_create(cart=cart, pizza=pizza)
+    name = "Pizza of the month"
+    cart_item, created = CartItem.objects.get_or_create(cart=cart, pizza=pizza, name="Pizza of the month")
     cart.total_price += round(pizza.price/2) * cart_item.quantity
     cart.save()
     if not created:
