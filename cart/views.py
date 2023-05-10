@@ -32,3 +32,7 @@ def cart_detail(request):
     cart, created = Cart.objects.get_or_create(user=request.user)
     cart_items = cart.cartitem_set.all()
     return render(request, 'cart/cart.html', {'cart_items': cart_items, 'total_price': cart.total_price})
+
+@login_required
+def checkout(request):
+    return render(request, 'cart/checkout.html')
