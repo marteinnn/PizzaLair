@@ -4,7 +4,7 @@
   <h1>Shopping Cart</h1>
   <ul>
     {% for cart_item in cart_items %}
-      <li>{{ cart_item.pizza.name }} - {{ cart_item.quantity }} - <a href="{% url 'remove_from_cart' cart_item.id %}">Remove</a></li>
+      <li>{{ cart_item.name }} - {{ cart_item.quantity }} - <a href="{% url 'remove_from_cart' cart_item.id %}">Remove</a></li>
     {% empty %}
       <li>Your cart is empty</li>
     {% endfor %}

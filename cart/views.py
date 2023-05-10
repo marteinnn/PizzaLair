@@ -14,6 +14,18 @@ def add_to_cart(request, id):
         cart_item.save()
     return redirect('cart')
 
+def add_pofmonth_to_cart(request, id):
+    cart, created = Cart.objects.get_or_create(user=request.user)
+    pizza = get_object_or_404(Pizza, PID=id)
+    pizza.name = "Pizza of the month"
+    cart_item, created = CartItem.objects.get_or_create(cart=cart, pizza=pizza)
+    cart.total_price += round(pizza.price/2) * cart_item.quantity
+    cart.save()
+    if not created:
+        cart_item.quantity += 1
+        cart_item.save()
+    return redirect('cart')
+
 @login_required
 def remove_from_cart(request, cart_item_id):
     cart_item = get_object_or_404(CartItem, id=cart_item_id)
