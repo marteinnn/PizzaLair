@@ -42,38 +42,6 @@
       </div>
       <button type="submit">Submit</button>
     </form>
-    <script>
-        var form = document.getElementById('contact-form');
-
-// Check if form data is stored in sessionStorage
-if (sessionStorage.getItem('form_data')) {
-  var data = JSON.parse(sessionStorage.getItem('form_data'));
-  form.elements['full-name'].value = data.full_name;
-  form.elements['street-name'].value = data.street_name;
-  form.elements['house-number'].value = data.house_number;
-  form.elements['city'].value = data.city;
-  form.elements['country'].value = data.country;
-  form.elements['postal-code'].value = data.postal_code;
-
-  // Remove form data from sessionStorage
-  sessionStorage.removeItem('form_data');
-}
-
-form.addEventListener('submit', function(event) {
-  event.preventDefault();
-  sessionStorage.setItem('form_data', JSON.stringify({
-    'full_name': form.elements['full-name'].value,
-    'street_name': form.elements['street-name'].value,
-    'house_number': form.elements['house-number'].value,
-    'city': form.elements['city'].value,
-    'country': form.elements['country'].value,
-    'postal_code': form.elements['postal-code'].value,
-  }));
-  window.location.href = "{% url 'payment' %}";
-});
-
-
-    </script>
 
 </body>
 
