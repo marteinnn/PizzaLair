@@ -1,3 +1,5 @@
+
+const TOKEN = '{% csrf_token %}'
 $(document).ready(function() {
     $('#search-btn').on('click', function(e) {
        e.preventDefault();
@@ -15,11 +17,16 @@ $(document).ready(function() {
                                     ${d.toppings}
                                     </p>
                                     <h2>${d.price} $</h2>
+                                        <form method="POST" action="/cart/add-to-cart/${d.id}">
+                                            {{ csrf_token }}
+                                            <button type="submit">Add to cart</button>
+                                        </form>
                                 </div>
                             </a>`
                 });
                 $('.order-items').html(newHtml.join(''));
                 $('#search-box').val('')
+
 
            },
            error: function(xhr, status, error) {
@@ -46,6 +53,10 @@ $(document).ready(function() {
                                     ${d.toppings}
                                     </p>
                                     <h2>${d.price} $</h2>
+                                        <form method="POST" action="/cart/add-to-cart/${d.id}">
+                                            {{ csrf_token }}
+                                            <button type="submit">Add to cart</button>
+                                        </form>
                                 </div>
                             </a>`
                 });
@@ -76,6 +87,10 @@ $(document).ready(function() {
                                     ${d.toppings}
                                     </p>
                                     <h2>${d.price} $</h2>
+                                        <form method="POST" action="/cart/add-to-cart/${d.id}">
+                                            {{ csrf_token }}
+                                            <button type="submit">Add to cart</button>
+                                        </form>
                                 </div>
                             </a>`
                 });
@@ -106,6 +121,10 @@ $(document).ready(function() {
                                     ${d.toppings}
                                     </p>
                                     <h2>${d.price} $</h2>
+                                        <form method="POST" action="/cart/add-to-cart/${d.id}">
+                                            {{ csrf_token }}
+                                            <button type="submit">Add to cart</button>
+                                        </form>
                                 </div>
                             </a>`
                 });
@@ -128,13 +147,20 @@ $(document).ready(function() {
            type: 'GET',
            success: function(resp) {
                 let newHtml = resp.data.map(d => {
-                    return `<div class="pizza_item">
-                            <img class="pizza-image" src="../static/images/${d.image}"/>
-                            <h4>${d.name}</h4>
-                            <p>${d.description}</p>
-                            <h2>${d.price} $</h2>
-                            <button>Add to cart!</button>
-                            </div>`
+                    return `<a href="/order/${d.id}">
+                                <div class="pizza_item">
+                                    <img class="pizza-image" src="../static/images/${d.image}"/>
+                                    <h4>${d.name}</h4>
+                                    <p>
+                                    ${d.toppings}
+                                    </p>
+                                    <h2>${d.price} $</h2>
+                                        <form method="POST" action="/cart/add-to-cart/${d.id}">
+                                            {{ csrf_token }}
+                                            <button type="submit">Add to cart</button>
+                                        </form>
+                                </div>
+                            </a>`
                 });
                 $('.order-items').html(newHtml.join(''));
                 $('#search-box').val('')

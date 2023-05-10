@@ -2,6 +2,11 @@
     <div class="pizza_item">
         <img class="pizza-image" src="../static/images/{{ pizza.pizza.image }}"/>
         <h4>{{ pizza.pizza.name }}</h4>
+        <p class="pizza-toppings">
+            {% for topping in pizza.toppings %}
+            {{ topping.name }},
+            {% endfor %}
+        </p>
         <h2>{{ pizza.pizza.price }} $</h2>
         <form method="POST" action="{% url 'add_to_cart' pizza.pizza.PID %}">
             {% csrf_token %}
