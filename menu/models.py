@@ -1,12 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Topping(models.Model):
-    TID = models.IntegerField(primary_key=True, unique=True)
-    name = models.CharField(max_length=255)
 
-    def __str__(self):
-        return self.name
 
 class Pizza(models.Model):
     PID = models.IntegerField(primary_key=True, unique=True)
@@ -22,5 +17,8 @@ class Pizza(models.Model):
 
 class PizzaToppings(models.Model):
     PID = models.ForeignKey(Pizza, on_delete=models.CASCADE)
-    TID = models.ForeignKey(Topping, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
 
