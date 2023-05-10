@@ -8,9 +8,6 @@
             {% endfor %}
         </p>
         <h2>{{ pizza.pizza.price }} $</h2>
-        <form method="POST" action="{% url 'add_to_cart' pizza.pizza.PID %}">
-            {% csrf_token %}
-            <button type="submit">Add to cart</button>
-        </form>
+        <a class="add-to-cart-btn" href="{% url 'add_to_cart' pizza.pizza.PID %}">Add to cart</a>
     </div>
 </a>

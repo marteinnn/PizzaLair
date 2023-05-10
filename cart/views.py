@@ -7,7 +7,7 @@ def add_to_cart(request, id):
     cart, created = Cart.objects.get_or_create(user=request.user)
     pizza = get_object_or_404(Pizza, PID=id)
     cart_item, created = CartItem.objects.get_or_create(cart=cart, pizza=pizza, name=pizza.name)
-    cart.total_price += pizza.price * cart_item.quantity
+    cart.total_price += pizza.price #* cart_item.quantity
     cart.save()
     if not created:
         cart_item.quantity += 1
@@ -20,9 +20,9 @@ def add_deal_to_cart(request, pizza_id, pizza1_id):
     pizza1 = get_object_or_404(Pizza, PID=pizza1_id)
     cart_item, created = CartItem.objects.get_or_create(cart=cart, pizza=pizza, pizza1=pizza1, name="Two for One")
     if pizza.price > pizza1.price:
-        cart.total_price += pizza.price * cart_item.quantity
+        cart.total_price += pizza.price #* cart_item.quantity
     else:
-        cart.total_price += pizza1.price * cart_item.quantity
+        cart.total_price += pizza1.price #* cart_item.quantity
     cart.save()
     if not created:
         cart_item.quantity += 1
@@ -33,7 +33,7 @@ def add_pofmonth_to_cart(request, id):
     cart, created = Cart.objects.get_or_create(user=request.user)
     pizza = get_object_or_404(Pizza, PID=id)
     cart_item, created = CartItem.objects.get_or_create(cart=cart, pizza=pizza, name="Pizza of the month")
-    cart.total_price += round(pizza.price/2) * cart_item.quantity
+    cart.total_price += round(pizza.price/2) #* cart_item.quantity
     cart.save()
     if not created:
         cart_item.quantity += 1
@@ -50,9 +50,9 @@ def remove_from_cart(request, cart_item_id):
     else:
         cart_item.delete()
     if cart_item.name == "Pizza of the month":
-        cart.total_price -= (cart_item.pizza.price/2) * cart_item.quantity
+        cart.total_price -= (cart_item.pizza.price/2) #* cart_item.quantity
     else:
-        cart.total_price -= cart_item.pizza.price * cart_item.quantity
+        cart.total_price -= cart_item.pizza.price #* cart_item.quantity
     cart.save()
     return redirect('cart')
 

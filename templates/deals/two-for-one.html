@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>Two for one!</h1>
-<form method="POST" action="{% url 'add_deal_to_cart' %}">
+<form method="POST" action="{% url 'add_deal_to_cart' 1 2 %}">
   {% csrf_token %}
   <label for="pizza">Pizza 1: </label>
   <select name="pizza-select" id="pizza-select">

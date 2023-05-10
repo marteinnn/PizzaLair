@@ -17,10 +17,7 @@ $(document).ready(function() {
                                     ${d.toppings}
                                     </p>
                                     <h2>${d.price} $</h2>
-                                        <form method="POST" action="/cart/add-to-cart/${d.id}">
-                                            {{ csrf_token }}
-                                            <button type="submit">Add to cart</button>
-                                        </form>
+                                    <a class="add-to-cart-btn" href="/cart/add-to-cart/${d.id}">Add to cart</a>
                                 </div>
                             </a>`
                 });
@@ -53,10 +50,7 @@ $(document).ready(function() {
                                     ${d.toppings}
                                     </p>
                                     <h2>${d.price} $</h2>
-                                        <form method="POST" action="/cart/add-to-cart/${d.id}">
-                                            {{ csrf_token }}
-                                            <button type="submit">Add to cart</button>
-                                        </form>
+                                    <a class="add-to-cart-btn" href="/cart/add-to-cart/${d.id}">Add to cart</a>
                                 </div>
                             </a>`
                 });
@@ -87,10 +81,7 @@ $(document).ready(function() {
                                     ${d.toppings}
                                     </p>
                                     <h2>${d.price} $</h2>
-                                        <form method="POST" action="/cart/add-to-cart/${d.id}">
-                                            {{ csrf_token }}
-                                            <button type="submit">Add to cart</button>
-                                        </form>
+                                    <a class="add-to-cart-btn" href="/cart/add-to-cart/${d.id}">Add to cart</a>
                                 </div>
                             </a>`
                 });
@@ -121,10 +112,7 @@ $(document).ready(function() {
                                     ${d.toppings}
                                     </p>
                                     <h2>${d.price} $</h2>
-                                        <form method="POST" action="/cart/add-to-cart/${d.id}">
-                                            {{ csrf_token }}
-                                            <button type="submit">Add to cart</button>
-                                        </form>
+                                    <a class="add-to-cart-btn" href="/cart/add-to-cart/${d.id}">Add to cart</a>
                                 </div>
                             </a>`
                 });
@@ -155,10 +143,7 @@ $(document).ready(function() {
                                     ${d.toppings}
                                     </p>
                                     <h2>${d.price} $</h2>
-                                        <form method="POST" action="/cart/add-to-cart/${d.id}">
-                                            {{ csrf_token }}
-                                            <button type="submit">Add to cart</button>
-                                        </form>
+                                    <a class="add-to-cart-btn" href="/cart/add-to-cart/${d.id}">Add to cart</a>
                                 </div>
                             </a>`
                 });
@@ -202,4 +187,75 @@ form.addEventListener('submit', function(event) {
   }));
   window.location.href = "payment";
 });
+
+
+
+      var billingAddressSection = document.getElementById("billing-address-section");
+      var billingAddressCheckbox = document.getElementById("billing-address-checkbox");
+
+      // Hide the billing address section by default
+      billingAddressSection.style.display = "none";
+
+      // Show/hide the billing address section based on the checkbox state
+      billingAddressCheckbox.addEventListener("change", function () {
+        if (billingAddressCheckbox.checked) {
+          billingAddressSection.style.display = "none";
+        } else {
+          billingAddressSection.style.display = "block";
+        }
+      });
+
+      // Show the billing address section if the checkbox is unchecked by default
+      if (!billingAddressCheckbox.checked) {
+        billingAddressSection.style.display = "block";
+      }
+
+  var paymentForm = document.getElementById("payment-form");
+  var payCheckbox = document.getElementById("pay-checkbox");
+  var formElements = paymentForm.elements;
+
+  // Hide form elements and associated labels except for the pay-checkbox and the submit button
+  function hideFormElements() {
+    for (var i = 0; i < formElements.length; i++) {
+      var element = formElements[i];
+      if (element.id !== "pay-checkbox" && element.type !== "submit") {
+        // Hide the form element
+        element.style.display = "none";
+
+        // Hide the associated label if it exists
+        var label = document.querySelector("label[for='" + element.id + "']");
+        if (label) {
+          label.style.display = "none";
+        }
+      }
+    }
+  }
+
+  // Show all form elements and associated labels
+  function showFormElements() {
+    for (var i = 0; i < formElements.length; i++) {
+      var element = formElements[i];
+      element.style.display = "";
+
+      // Show the associated label if it exists
+      var label = document.querySelector("label[for='" + element.id + "']");
+      if (label) {
+        label.style.display = "";
+      }
+    }
+  }
+
+  // Initial setup: hide form elements and associated labels if pay-checkbox is checked
+  if (payCheckbox.checked) {
+    hideFormElements();
+  }
+
+  // Show/hide form elements and associated labels based on the pay-checkbox state
+  payCheckbox.addEventListener("change", function() {
+    if (payCheckbox.checked) {
+      hideFormElements();
+    } else {
+      showFormElements();
+    }
+  });
 
