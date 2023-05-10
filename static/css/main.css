@@ -311,7 +311,12 @@ li {
   margin: 0.5rem;
 }
 
-
+.pay-label {
+    padding-bottom: 20px;
+    padding-left: 10px;
+    font-size: 20px;
+    font-weight: 550
+}
 
 
 

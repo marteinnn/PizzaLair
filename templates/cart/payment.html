@@ -1,5 +1,141 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>PAY UP BITCH</h1>
+  <body>
+    <h1>Payment form</h1>
+    {% if message %}
+      <p>{{ message }}</p>
+    {% endif %}
+    <form id="payment-form" method="post" action="{% url 'payment' %}">
+      {% csrf_token %}
+
+        <input type="checkbox" id="pay-checkbox" name="pay-checkbox">
+      <label for="pay-checkbox" class="pay-label" >Pay when you get there</label>
+
+      <div>
+        <label for="full-name">Full name:</label>
+        <input type="text" id="full-name" name="full-name" required>
+      </div>
+      <div>
+        <label for="credit-card-number">Credit Card Number:</label>
+        <input type="text" id="credit-card-number" name="credit-card-number" required>
+      </div>
+      <div>
+        <label for="expiration-date">Expiration Date:</label>
+        <input type="text" id="expiration-date" name="expiration-date" placeholder="MM/YYYY" required>
+      </div>
+      <div>
+        <label for="cvv">CVV:</label>
+        <input type="text" id="cvv" name="cvv" required>
+      </div>
+
+      <input type="checkbox" id="billing-address-checkbox" name="billing-address-checkbox">
+      <label for="billing-address-checkbox">Billing address same as shipping address</label>
+
+      <div id="billing-address-section">
+        <div>
+          <label for="street-name">Street name:</label>
+          <input type="text" id="street-name" name="street-name" required>
+        </div>
+        <div>
+          <label for="house-number">House number:</label>
+          <input type="text" id="house-number" name="house-number" required>
+        </div>
+        <div>
+          <label for="city">City:</label>
+          <input type="text" id="city" name="city" required>
+        </div>
+        <div>
+          <label for="country">Country:</label>
+          <select id="country" name="country" required>
+            <option value="">-- Select a country --</option>
+            <option value="USA">United States of America</option>
+            <option value="UK">United Kingdom</option>
+            <option value="CA">Canada</option>
+            <option value="MX">Mexico</option>
+          </select>
+        </div>
+        <div>
+          <label for="postal-code">Postal code:</label>
+          <input type="text" id="postal-code" name="postal-code" required>
+        </div>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+
     <a href="{% url 'checkout' %}">Back</a>
+
+    <script>
+      var billingAddressSection = document.getElementById("billing-address-section");
+      var billingAddressCheckbox = document.getElementById("billing-address-checkbox");
+
+      // Hide the billing address section by default
+      billingAddressSection.style.display = "none";
+
+      // Show/hide the billing address section based on the checkbox state
+      billingAddressCheckbox.addEventListener("change", function () {
+        if (billingAddressCheckbox.checked) {
+          billingAddressSection.style.display = "none";
+        } else {
+          billingAddressSection.style.display = "block";
+        }
+      });
+
+      // Show the billing address section if the checkbox is unchecked by default
+      if (!billingAddressCheckbox.checked) {
+        billingAddressSection.style.display = "block";
+      }
+
+    </script>
+  <script>
+  var paymentForm = document.getElementById("payment-form");
+  var payCheckbox = document.getElementById("pay-checkbox");
+  var formElements = paymentForm.elements;
+
+  // Hide form elements and associated labels except for the pay-checkbox and the submit button
+  function hideFormElements() {
+    for (var i = 0; i < formElements.length; i++) {
+      var element = formElements[i];
+      if (element.id !== "pay-checkbox" && element.type !== "submit") {
+        // Hide the form element
+        element.style.display = "none";
+
+        // Hide the associated label if it exists
+        var label = document.querySelector("label[for='" + element.id + "']");
+        if (label) {
+          label.style.display = "none";
+        }
+      }
+    }
+  }
+
+  // Show all form elements and associated labels
+  function showFormElements() {
+    for (var i = 0; i < formElements.length; i++) {
+      var element = formElements[i];
+      element.style.display = "";
+
+      // Show the associated label if it exists
+      var label = document.querySelector("label[for='" + element.id + "']");
+      if (label) {
+        label.style.display = "";
+      }
+    }
+  }
+
+  // Initial setup: hide form elements and associated labels if pay-checkbox is checked
+  if (payCheckbox.checked) {
+    hideFormElements();
+  }
+
+  // Show/hide form elements and associated labels based on the pay-checkbox state
+  payCheckbox.addEventListener("change", function() {
+    if (payCheckbox.checked) {
+      hideFormElements();
+    } else {
+      showFormElements();
+    }
+  });
+</script>
+
+  </body>
 {% endblock %}
