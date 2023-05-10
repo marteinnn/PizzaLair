@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>Two for one!</h1>
-<form method="post">
+<form method="POST" action="{% url 'add_deal_to_cart' %}">
   {% csrf_token %}
   <label for="pizza">Pizza 1: </label>
   <select name="pizza-select" id="pizza-select">
@@ -9,12 +9,12 @@
       <option value="{{ pizza.id }}">{{ pizza.name }}</option>
     {% endfor %}
   </select>
-<label for="pizza">Pizza 2: </label>
-  <select name="pizza-select" id="pizza-select">
+<label for="pizza1">Pizza 2: </label>
+  <select name="pizza-select1" id="pizza-select1">
     {% for pizza in pizzas %}
       <option value="{{ pizza.id }}">{{ pizza.name }}</option>
     {% endfor %}
   </select>
   <button type="submit">Submit</button>
-</form>
+
 {% endblock %}

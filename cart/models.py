@@ -17,3 +17,13 @@ class CartItem(models.Model):
     quantity = models.PositiveIntegerField(default=1)
     def __str__(self):
         return self.pizza.name
+
+class CartItemDeals(models.Model):
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    pizza = models.ForeignKey(Pizza, on_delete=models.CASCADE, default=None, related_name="firstpizza")
+    pizza1 = models.ForeignKey(Pizza, on_delete=models.CASCADE, default=None, related_name="secondpizza")
+    name = models.CharField(max_length=255)
+    quantity = models.PositiveIntegerField(default=1)
+    def __str__(self):
+        return self.name
+
