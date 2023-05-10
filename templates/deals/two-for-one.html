@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>Two for one!</h1>
-<form method="POST" action="{% url 'add_deal_to_cart' 1 2 %}">
+<form method="POST" action="{% url 'add_deal_to_cart' 'twoforone' 1 2 %}">
   {% csrf_token %}
   <label for="pizzaselector">Pizza 1: </label>
   <select name="pizzaselect" id="pizzaselector">
@@ -22,7 +22,7 @@
       const pizza_selected1 = document.querySelector('#pizzaselector1');
       const pizzaId = pizza_selected.selectedIndex+1;
       const pizza1Id = pizza_selected1.selectedIndex+1;
-        let url = "{% url 'add_deal_to_cart' 0 0 %}".replace('0', pizzaId).replace('0', pizza1Id);
+        let url = "{% url 'add_deal_to_cart' 'twoforone' 0 0 %}".replace('0', pizzaId).replace('0', pizza1Id);
       window.location.href = url;
     }
   </script>

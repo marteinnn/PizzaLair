@@ -10,10 +10,13 @@
         <li>{{ cart_item.name }} - {{ cart_item.quantity }} - <a href="{% url 'remove_from_cart' cart_item.id %}">Remove</a></li>
       {% endfor %}
       {% for cart_item in cart_item_deals %}
-        <li>{{ cart_item.name }} - {{ cart_item.quantity }} - <a href="{% url 'remove_deal_from_cart' cart_item.id %}">Remove</a></li>
+        <li>{{ cart_item.name }} - {{ cart_item.quantity }} - <a href="{% url 'remove_deal_from_cart' cart_item.name cart_item.id %}">Remove</a></li>
+          <p>{{ cart_item.pizza.name }}</p>
+          <p>{{ cart_item.pizza1.name }}</p>
       {% endfor %}
     </ul>
     <a href="{% url 'checkout' %}">Proceed To Checkout</a>
   {% endif %}
     <h2>${{ total_price }}</h2>
+    <a href="{% url 'clear_cart' %}">Clear Cart</a>
 {% endblock %}
