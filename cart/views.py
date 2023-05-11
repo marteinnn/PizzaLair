@@ -14,6 +14,7 @@ def add_to_cart(request, id):
         cart_item.save()
     return redirect('cart')
 
+@login_required
 def add_deal_to_cart(request, typeofdeal ,pizza_id, pizza1_id):
     cart, created = Cart.objects.get_or_create(user=request.user)
     pizza = get_object_or_404(Pizza, PID=pizza_id)
@@ -34,6 +35,7 @@ def add_deal_to_cart(request, typeofdeal ,pizza_id, pizza1_id):
         cart_item.save()
     return redirect('cart')
 
+@login_required
 def add_pofmonth_to_cart(request, id):
     cart, created = Cart.objects.get_or_create(user=request.user)
     pizza = get_object_or_404(Pizza, PID=id)
@@ -49,21 +51,65 @@ def add_pofmonth_to_cart(request, id):
 def remove_from_cart(request, cart_item_id):
     cart_item = get_object_or_404(CartItem, id=cart_item_id)
     cart = get_object_or_404(Cart, user=request.user)
-    if cart_item.quantity > 1:
-        cart_item.quantity -= 1
-        cart_item.save()
-    else:
-        cart_item.delete()
     if cart_item.name == "Pizza of the month":
-        cart.total_price -= (cart_item.pizza.price/2) #* cart_item.quantity
+        cart.total_price -= (cart_item.pizza.price/2) * cart_item.quantity
     else:
-        cart.total_price -= cart_item.pizza.price #* cart_item.quantity
+        cart.total_price -= cart_item.pizza.price * cart_item.quantity
+    cart_item.delete()
     cart.save()
     return redirect('cart')
 
+@login_required
 def remove_deal_from_cart(request, typeofdeal, cart_item_id):
     cart_item = get_object_or_404(CartItemDeals, id=cart_item_id)
     cart = get_object_or_404(Cart, user=request.user)
+    if typeofdeal == 'Two for One':
+        if cart_item.pizza.price > cart_item.pizza1.price:
+            cart.total_price -= cart_item.pizza.price * cart_item.quantity
+        else:
+            cart.total_price -= cart_item.pizza1.price * cart_item.quantity
+    elif typeofdeal == 'Family order':
+        cart.total_price -= 40 * cart_item.quantity
+    cart_item.delete()
+    cart.save()
+    return redirect('cart')
+
+@login_required
+def clear_cart(request):
+    cart = get_object_or_404(Cart, user=request.user)
+    cart.delete()
+    return redirect('cart')
+
+@login_required
+def decrease_quantity(request, cart_item_id):
+    cart_item = get_object_or_404(CartItem, id=cart_item_id)
+    cart = cart_item.cart
+    if cart_item.quantity == 1:
+        cart_item.delete()
+    else:
+        cart_item.quantity -= 1
+        cart_item.save()
+    cart.total_price -= cart_item.pizza.price
+    cart.save()
+    return redirect('cart')
+
+@login_required
+def increase_quantity(request, cart_item_id):
+    cart_item = get_object_or_404(CartItem, id=cart_item_id)
+    cart = cart_item.cart
+    cart_item.quantity += 1
+    cart_item.save()
+    if cart_item.name == "Pizza of the month":
+        cart.total_price += cart_item.pizza.price / 2
+    else:
+        cart.total_price += cart_item.pizza.price
+    cart.save()
+    return redirect('cart')
+
+@login_required
+def decrease_deal_quantity(request, typeofdeal, item_id):
+    cart_item = get_object_or_404(CartItemDeals, id=item_id)
+    cart = cart_item.cart
     if cart_item.quantity > 1:
         cart_item.quantity -= 1
         cart_item.save()
@@ -71,17 +117,28 @@ def remove_deal_from_cart(request, typeofdeal, cart_item_id):
         cart_item.delete()
     if typeofdeal == 'Two for One':
         if cart_item.pizza.price > cart_item.pizza1.price:
-            cart.total_price -= cart_item.pizza.price  # * cart_item.quantity
+            cart.total_price -= cart_item.pizza.price
         else:
-            cart.total_price -= cart_item.pizza1.price  # * cart_item.quantity
+            cart.total_price -= cart_item.pizza1.price
     elif typeofdeal == 'Family order':
         cart.total_price -= 40
     cart.save()
     return redirect('cart')
 
-def clear_cart(request):
-    cart = get_object_or_404(Cart, user=request.user)
-    cart.delete()
+@login_required
+def increase_deal_quantity(request, typeofdeal, item_id):
+    cart_item = get_object_or_404(CartItemDeals, id=item_id)
+    cart = cart_item.cart
+    cart_item.quantity += 1
+    cart_item.save()
+    if typeofdeal == 'Two for One':
+        if cart_item.pizza.price > cart_item.pizza1.price:
+            cart.total_price += cart_item.pizza.price
+        else:
+            cart.total_price += cart_item.pizza1.price
+    elif typeofdeal == 'Family order':
+        cart.total_price += 40
+    cart.save()
     return redirect('cart')
 
 @login_required
@@ -95,11 +152,14 @@ def cart_detail(request):
 def checkout(request):
     return render(request, 'cart/checkout.html')
 
+@login_required
 def payment(request):
     return render(request, 'cart/payment.html')
 
+@login_required
 def review(request):
     return render(request, 'cart/review.html')
 
+@login_required
 def pickpayment(request):
     return render(request, 'cart/pick-payment.html')

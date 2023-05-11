@@ -7,10 +7,18 @@
   {% else %}
     <ul>
       {% for cart_item in cart_items %}
-        <li>{{ cart_item.name }} - {{ cart_item.quantity }} - <a href="{% url 'remove_from_cart' cart_item.id %}">Remove</a></li>
+        <li>{{ cart_item.name }} -
+          <button onclick="window.location='{% url 'decrease_quantity' cart_item.id %}'">-</button>
+          {{ cart_item.quantity }}
+          <button onclick="window.location='{% url 'increase_quantity' cart_item.id %}'">+</button>
+          - <a href="{% url 'remove_from_cart' cart_item.id %}">Remove</a></li>
       {% endfor %}
       {% for cart_item in cart_item_deals %}
-        <li>{{ cart_item.name }} - {{ cart_item.quantity }} - <a href="{% url 'remove_deal_from_cart' cart_item.name cart_item.id %}">Remove</a></li>
+        <li>{{ cart_item.name }} -
+          <button onclick="window.location='{% url 'decrease_deal_quantity' cart_item.name cart_item.id %}'">-</button>
+          {{ cart_item.quantity }}
+          <button onclick="window.location='{% url 'increase_deal_quantity' cart_item.name cart_item.id %}'">+</button>
+          - <a href="{% url 'remove_deal_from_cart' cart_item.name cart_item.id %}">Remove</a></li>
           <p>{{ cart_item.pizza.name }}</p>
           <p>{{ cart_item.pizza1.name }}</p>
       {% endfor %}
