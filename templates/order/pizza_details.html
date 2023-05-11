@@ -13,7 +13,7 @@
     <h2>{{ pizza.price }} $</h2>
     <form method="POST" action="{% url 'add_to_cart' pizza.PID %}">
       {% csrf_token %}
-      <button type="submit">Add to cart</button>
+      <button class="add-to-cart-btn">Add to cart</button>
     </form>
   </div>
   {% if pizza.vegan == True %}

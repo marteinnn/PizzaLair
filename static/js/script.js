@@ -9,7 +9,7 @@ $(document).ready(function() {
            type: 'GET',
            success: function(resp) {
                 let newHtml = resp.data.map(d => {
-                    return `<a href="/order/${d.id}">
+                    return `<a class="order-box" href="/order/${d.id}">
                                 <div class="pizza_item">
                                     <img class="pizza-image" src="../static/images/${d.image}"/>
                                     <h4>${d.name}</h4>
@@ -42,7 +42,7 @@ $(document).ready(function() {
            type: 'GET',
            success: function(resp) {
                 let newHtml = resp.data.map(d => {
-                    return `<a href="/order/${d.id}">
+                    return `<a class="order-box" href="/order/${d.id}">
                                 <div class="pizza_item">
                                     <img class="pizza-image" src="../static/images/${d.image}"/>
                                     <h4>${d.name}</h4>
@@ -73,7 +73,7 @@ $(document).ready(function() {
            type: 'GET',
            success: function(resp) {
                 let newHtml = resp.data.map(d => {
-                    return `<a href="/order/${d.id}">
+                    return `<a class="order-box" href="/order/${d.id}">
                                 <div class="pizza_item">
                                     <img class="pizza-image" src="../static/images/${d.image}"/>
                                     <h4>${d.name}</h4>
@@ -104,7 +104,7 @@ $(document).ready(function() {
            type: 'GET',
            success: function(resp) {
                 let newHtml = resp.data.map(d => {
-                    return `<a href="/order/${d.id}">
+                    return `<a class="order-box" href="/order/${d.id}">
                                 <div class="pizza_item">
                                     <img class="pizza-image" src="../static/images/${d.image}"/>
                                     <h4>${d.name}</h4>
@@ -135,7 +135,7 @@ $(document).ready(function() {
            type: 'GET',
            success: function(resp) {
                 let newHtml = resp.data.map(d => {
-                    return `<a href="/order/${d.id}">
+                    return `<a class="order-box" href="/order/${d.id}">
                                 <div class="pizza_item">
                                     <img class="pizza-image" src="../static/images/${d.image}"/>
                                     <h4>${d.name}</h4>

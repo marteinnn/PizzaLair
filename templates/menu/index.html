@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="menu-page">
-        <div class="menu-title">
+        <div id="menu-title">
             <h1 id="menu-page-title">The menu</h1>
-            <a href="{% url 'order-index' %}">Go to order page!</a>
+            <a id="menu-to-order" href="{% url 'order-index' %}">Go to order page!</a>
         </div>
         <div class="menu-items">
             <div class="row">
