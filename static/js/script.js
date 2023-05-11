@@ -1,13 +1,12 @@
 
 const TOKEN = '{% csrf_token %}'
 $(document).ready(function() {
-    $('#search-btn').on('click', function(e) {
-       e.preventDefault();
-       let searchText = $('#search-box').val();
-       $.ajax({
-           url: '/order?search_filter='+ searchText,
-           type: 'GET',
-           success: function(resp) {
+    $('#search-box').on('keyup', function(e) {
+        let searchText = $(this).val();
+        $.ajax({
+            url: '/order?search_filter='+ searchText,
+            type: 'GET',
+            success: function(resp) {
                 let newHtml = resp.data.map(d => {
                     return `<a class="order-box" href="/order/${d.id}">
                                 <div class="pizza_item">
@@ -22,16 +21,14 @@ $(document).ready(function() {
                             </a>`
                 });
                 $('.order-items').html(newHtml.join(''));
-                $('#search-box').val('')
-
-
-           },
-           error: function(xhr, status, error) {
-               console.error(error);
-           }
-       })
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        })
     });
 });
+
 
 $(document).ready(function() {
     $('#vegan-btn').on('click', function(e) {
