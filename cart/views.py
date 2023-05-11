@@ -166,3 +166,7 @@ def review(request):
 @login_required
 def pickpayment(request):
     return render(request, 'cart/pick-payment.html')
+
+@login_required
+def confirmation(request):
+    return render(request, 'cart/confirmation.html')

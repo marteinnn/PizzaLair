@@ -336,4 +336,35 @@ li {
   text-decoration: underline;
 }
 
+.confirmation-box {
+  background-color: white;
+  border: 8px solid #ccc;
+  padding: 20px;
+  text-align: center;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 50px;
+  animation: borderFlash 2s infinite;
+}
 
+.confirmation-box h1 {
+  font-size: px;40
+  margin-bottom: 15px;
+}
+
+.confirmation-box p {
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+@keyframes borderFlash {
+  0% {
+    border-color: red;
+  }
+  50% {
+    border-color: white;
+  }
+  100% {
+    border-color: red;
+  }
+}

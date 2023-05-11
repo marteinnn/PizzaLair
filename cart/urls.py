@@ -18,5 +18,6 @@ urlpatterns = [
     path('increase-deal-quantity/<str:typeofdeal>/<int:item_id>', views.increase_deal_quantity, name='increase_deal_quantity'),
     path('payment', views.payment, name="payment"),
     path('reviews', views.review, name="review"),
-    path('pick-payment', views.pickpayment, name="pick-payment")
+    path('pick-payment', views.pickpayment, name="pick-payment"),
+    path('confirmation', views.confirmation, name="confirmation")
 ]

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+  <head>
+    <title>Confirmation</title>
+  </head>
+  <body>
+    <div class="confirmation-box">
+      <h1>Order Confirmed!</h1>
+      <p>Your order has been confirmed and is being prepared.</p>
+      <p>Check out our new app if you haven't! <br> Available now on all smartphones.</p>
+    </div>
+  </body>
+    <a href="{% url 'frontpage-index' %}" class="back-button">Back to frontpage</a>
+{% endblock %}
