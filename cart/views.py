@@ -158,7 +158,10 @@ def payment(request):
 
 @login_required
 def review(request):
-    return render(request, 'cart/review.html')
+    cart, created = Cart.objects.get_or_create(user=request.user)
+    cart_items = cart.cartitem_set.all()
+    cart_deal_items = cart.cartitemdeals_set.all()
+    return render(request, 'cart/review.html', {'cart_items': cart_items, 'cart_item_deals': cart_deal_items, 'total_price': cart.total_price})
 
 @login_required
 def pickpayment(request):
