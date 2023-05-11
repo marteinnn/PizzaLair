@@ -1,10 +1,18 @@
 {% extends 'base.html' %}
-{% block content %}
-  <head>
-    <title>Review Order</title>
-  </head>
-  <body>
-    <h1>rereereview</h1>
-</body>
 
+{% block content %}
+  <h1>Review Order</h1>
+  <ul>
+    {% for cart_item in cart_items %}
+      <li>{{ cart_item.name }} - {{ cart_item.quantity }}</li>
+    {% endfor %}
+    {% for cart_item in cart_item_deals %}
+      <li>{{ cart_item.name }} - {{ cart_item.quantity }}</li>
+      <p>{{ cart_item.pizza.name }}</p>
+      <p>{{ cart_item.pizza1.name }}</p>
+    {% endfor %}
+  </ul>
+  <h2>Total Price: ${{ total_price }}</h2>
+  <a href="#" onclick="window.history.back()">Go Back</a>
+  <a href="{% url 'checkout' %}">Confirm order</a>
 {% endblock %}

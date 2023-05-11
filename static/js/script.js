@@ -185,7 +185,7 @@ form.addEventListener('submit', function(event) {
     'country': form.elements['country'].value,
     'postal_code': form.elements['postal-code'].value,
   }));
-  window.location.href = "payment";
+  window.location.href = "pick-payment";
 });
 
 

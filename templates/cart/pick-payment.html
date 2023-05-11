@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+  <head>
+    <title>Pick Payment</title>
+  </head>
+  <body>
+    <h1>How would you like to pay?</h1>
+
+    <form id="payment-method-form" method="post">
+      {% csrf_token %}
+      <input type="submit" name="pay-online" value="Pay online" onclick="redirectToPayment()">
+      <input type="submit" name="pay-there" value="Pay when you get there" onclick="redirectToReview()">
+    </form>
+
+    <a href="{% url 'checkout' %}" class="back-button">Back</a>
+
+    <script>
+      function redirectToPayment() {
+        document.getElementById('payment-method-form').action = "{% url 'payment' %}";
+      }
+
+      function redirectToReview() {
+        document.getElementById('payment-method-form').action = "{% url 'review' %}";
+      }
+    </script>
+  </body>
+{% endblock %}
