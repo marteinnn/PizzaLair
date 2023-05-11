@@ -2,7 +2,7 @@
 {% block content %}
     <div class="order-page">
     <div class="order-title">
-        <h1>Welcome to the Order page!</h1>
+        <h1 id="order-page-title">Welcome to the Order page!</h1>
     </div>
     <div class="input-group">
         <input type="search" class="form-control" id="search-box" placeholder="Enter Your search here..." />
@@ -10,11 +10,12 @@
             <button type="button" id="search-btn" class="btn btn-default">Search</button>
         </div>
     </div>
-    <div>
+    <div id="order-filter-buttons">
         <button type="button" id="vegan-btn">Vegan only</button>
         <button type="button" id="spicy-btn">Spicy only</button>
         <button type="button" id="name-btn">Sort by name</button>
         <button type="button" id="price-btn">Sort by price</button>
+        <button type="button" id="reset-btn" onclick="window.location.href='{% url 'order-index' %}'">Remove filters</button>
     </div>
         <div class="order-items">
             {% for pizza in pizzas %}

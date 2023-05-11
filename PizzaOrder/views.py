@@ -10,7 +10,7 @@ def order(request):
         for pizza in Pizza.objects.filter(name__icontains=search_filter):
             pizza_dict = {'id': pizza.PID, 'name': pizza.name, 'price': pizza.price, 'image': pizza.image,
                           'description': pizza.description, 'spicy': pizza.spicy, 'vegan': pizza.vegan,
-                          'toppings': [topping.name for topping in pizza.pizzatoppings_set.all()]}
+                          'toppings': [" " + topping.name for topping in pizza.pizzatoppings_set.all()]}
             pizzas.append(pizza_dict)
         return JsonResponse({'data': pizzas})
     elif 'check_filter' in request.GET:
@@ -20,7 +20,7 @@ def order(request):
             for pizza in Pizza.objects.filter(vegan__icontains=True):
                 pizza_dict = {'id': pizza.PID, 'name': pizza.name, 'price': pizza.price, 'image': pizza.image,
                               'description': pizza.description, 'spicy': pizza.spicy, 'vegan': pizza.vegan,
-                              'toppings': [topping.name for topping in pizza.pizzatoppings_set.all()]}
+                              'toppings': [" " + topping.name for topping in pizza.pizzatoppings_set.all()]}
                 pizzas.append(pizza_dict)
             return JsonResponse({'data': pizzas})
         elif filter == 'spicy':
@@ -28,7 +28,7 @@ def order(request):
             for pizza in Pizza.objects.filter(spicy__icontains=True):
                 pizza_dict = {'id': pizza.PID, 'name': pizza.name, 'price': pizza.price, 'image': pizza.image,
                               'description': pizza.description, 'spicy': pizza.spicy, 'vegan': pizza.vegan,
-                              'toppings': [topping.name for topping in pizza.pizzatoppings_set.all()]}
+                              'toppings': [" " + topping.name for topping in pizza.pizzatoppings_set.all()]}
                 pizzas.append(pizza_dict)
             return JsonResponse({'data': pizzas})
         elif filter == 'sortbyname':
@@ -36,7 +36,7 @@ def order(request):
             for pizza in Pizza.objects.all().order_by('name'):
                 pizza_dict = {'id': pizza.PID, 'name': pizza.name, 'price': pizza.price, 'image': pizza.image,
                               'description': pizza.description, 'spicy': pizza.spicy, 'vegan': pizza.vegan,
-                              'toppings': [topping.name for topping in pizza.pizzatoppings_set.all()]}
+                              'toppings': [" " + topping.name for topping in pizza.pizzatoppings_set.all()]}
                 pizzas.append(pizza_dict)
             return JsonResponse({'data': pizzas})
 
@@ -45,7 +45,7 @@ def order(request):
             for pizza in Pizza.objects.all().order_by('price'):
                 pizza_dict = {'id': pizza.PID, 'name': pizza.name, 'price': pizza.price, 'image': pizza.image,
                               'description': pizza.description, 'spicy': pizza.spicy, 'vegan': pizza.vegan,
-                              'toppings': [topping.name for topping in pizza.pizzatoppings_set.all()]}
+                              'toppings': [" " + topping.name for topping in pizza.pizzatoppings_set.all()]}
                 pizzas.append(pizza_dict)
             return JsonResponse({'data': pizzas})
 

@@ -25,7 +25,18 @@ body {
     border-radius: 50%;
 }
 
+#menu-page-title {
+    margin-top: 20px;
+    display: inline-block;
+}
 
+#order-page-title {
+    margin-top: 20px;
+}
+
+#order-filter-buttons {
+    margin: 20px;
+}
 
 .pizza-image {
     width: 100px;
@@ -44,7 +55,6 @@ body {
   font-family: Arial;
   font-size: 15px;
   line-height: 25px;
-  font-weight: italic;
   color: white;
   border: 2px solid;
   border-radius: 10px;
@@ -206,7 +216,6 @@ h1 {
 }
 
 .add-to-cart-btn {
-    position: flex;
     bottom: 55px;
     left: 50%;
     transform: translateX(-50%);
@@ -348,7 +357,7 @@ li {
 }
 
 .confirmation-box h1 {
-  font-size: px;40
+  font-size: 40px;
   margin-bottom: 15px;
 }
 

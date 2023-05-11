@@ -13,7 +13,7 @@ $(document).ready(function() {
                                 <div class="pizza_item">
                                     <img class="pizza-image" src="../static/images/${d.image}"/>
                                     <h4>${d.name}</h4>
-                                    <p>
+                                    <p class="pizza-toppings">
                                     ${d.toppings}
                                     </p>
                                     <h2>${d.price} $</h2>
@@ -46,7 +46,7 @@ $(document).ready(function() {
                                 <div class="pizza_item">
                                     <img class="pizza-image" src="../static/images/${d.image}"/>
                                     <h4>${d.name}</h4>
-                                    <p>
+                                    <p class="pizza-toppings">
                                     ${d.toppings}
                                     </p>
                                     <h2>${d.price} $</h2>
@@ -77,7 +77,7 @@ $(document).ready(function() {
                                 <div class="pizza_item">
                                     <img class="pizza-image" src="../static/images/${d.image}"/>
                                     <h4>${d.name}</h4>
-                                    <p>
+                                    <p class="pizza-toppings">
                                     ${d.toppings}
                                     </p>
                                     <h2>${d.price} $</h2>
@@ -108,7 +108,7 @@ $(document).ready(function() {
                                 <div class="pizza_item">
                                     <img class="pizza-image" src="../static/images/${d.image}"/>
                                     <h4>${d.name}</h4>
-                                    <p>
+                                    <p class="pizza-toppings">
                                     ${d.toppings}
                                     </p>
                                     <h2>${d.price} $</h2>
@@ -139,7 +139,7 @@ $(document).ready(function() {
                                 <div class="pizza_item">
                                     <img class="pizza-image" src="../static/images/${d.image}"/>
                                     <h4>${d.name}</h4>
-                                    <p>
+                                    <p class="pizza-toppings">
                                     ${d.toppings}
                                     </p>
                                     <h2>${d.price} $</h2>
