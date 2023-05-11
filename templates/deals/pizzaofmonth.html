@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Pizza of the month!</h1>
-    <h2>This months pizza of the month is {{ pizzas.name }}</h2>
-    <p>{{ pizzas.description }}</p>
-    <h2>$ {{ pizzas.price }}</h2>
+    <div class="pom-page">
+    <div class="pom-box">
+    <h1 id="pom-title">Pizza of the month!</h1>
+    <h2 id="pom-pizza">This months pizza of the month is {{ pizzas.name }}</h2>
+    <p id="pom-description">{{ pizzas.description }}</p>
+    <h2 id="pom-price">$ {{ pizzas.price }}</h2>
     <form method="POST" action="{% url 'add_pofmonth_to_cart' pizzas.id %}">
         {% csrf_token %}
-        <button type="submit">Add to cart</button>
+        <button id="pom-button" type="submit">Add to cart</button>
     </form>
+        </div>
+    </div>
 {% endblock %}

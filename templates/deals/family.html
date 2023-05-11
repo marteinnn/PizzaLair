@@ -1,21 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Two for one!</h1>
-<form method="POST" action="{% url 'add_deal_to_cart' 'family' 1 2 %}">
-  {% csrf_token %}
-  <label for="pizzaselector">Pizza 1: </label>
-  <select name="pizzaselect" id="pizzaselector">
-    {% for pizza in pizzas %}
-      <option id="{{ pizza.id }}">{{ pizza.name }}</option>
-    {% endfor %}
-  </select>
-<label for="pizzaselector1">Pizza 2: </label>
-  <select name="pizzaselect" id="pizzaselector1">
-    {% for pizza in pizzas %}
-      <option id="{{ pizza.PID }}">{{ pizza.name }}</option>
-    {% endfor %}
-  </select>
-  <button type="button" onclick="submitForm()">Submit</button>
+    <h1 id="family-title">Family order!</h1>
+    <div class="family-page">
+    <div class="family-box">
+    <form id="family-form" method="POST" action="{% url 'add_deal_to_cart' 'family' 1 2 %}">
+        {% csrf_token %}
+        <div class="option">
+        <label for="pizzaselector">Pizza 1: </label>
+        <select name="pizzaselect" id="pizzaselector">
+            {% for pizza in pizzas %}
+            <option id="{{ pizza.id }}">{{ pizza.name }}</option>
+            {% endfor %}
+        </select>
+        </div>
+        <div class="option">
+        <label for="pizzaselector1">Pizza 2: </label>
+        <select name="pizzaselect" id="pizzaselector1">
+            {% for pizza in pizzas %}
+            <option id="{{ pizza.PID }}">{{ pizza.name }}</option>
+            {% endfor %}
+        </select>
+        </div>
+        <button id="family-button" type="button" onclick="submitForm()">Submit</button>
+    </form>
+    </div>
+    </div>
 <script>
     function submitForm() {
       const pizza_selected = document.querySelector('#pizzaselector');
