@@ -8,8 +8,9 @@
 
     <form id="payment-method-form" method="post">
       {% csrf_token %}
-      <input type="submit" name="pay-online" value="Pay online" onclick="redirectToPayment()">
-      <input type="submit" name="pay-there" value="Pay when you get there" onclick="redirectToReview()">
+      <input type="submit" name="pay-online" value="Pay online" onclick="redirectToPayment()" class="pay-where-button">
+
+      <input type="submit" name="pay-there" value="Pay when you get there" onclick="redirectToReview()" class="pay-where-button">
     </form>
 
     <a href="{% url 'checkout' %}" class="back-button">Back</a>
