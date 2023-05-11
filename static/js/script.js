@@ -189,3 +189,19 @@ form.addEventListener('submit', function(event) {
 });
 
 
+function validateForm() {
+    var inputDate = document.getElementById("expiration-date").value;
+    var currentDate = new Date();
+    var monthYear = inputDate.split("/");
+    var inputMonth = parseInt(monthYear[0]);
+    var inputYear = parseInt(monthYear[1]);
+    var currentMonth = currentDate.getMonth() + 1;
+    var currentYear = currentDate.getFullYear();
+
+  if (inputYear < currentYear || (inputYear === currentYear && inputMonth < currentMonth)) {
+    alert("Expiration date must be valid.");
+    return false;
+  }
+  return true;
+}
+
