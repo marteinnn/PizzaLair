@@ -806,3 +806,13 @@ li {
     margin-top: 50px;
     margin-bottom: 50px;
 }
+
+.error-image {
+    width: 300px;
+    display: block; /* This makes the image a block element */
+    margin: auto;   /* This centers the image horizontally */
+}
+
+.error {
+    padding: 10%;
+}
