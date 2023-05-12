@@ -10,7 +10,7 @@ there we have 3 deals: 2 for 1, family deal and pizza of the month. The user can
 
 ## Instructions
 We have a requirements.txt file where you can see the requirements needed to run our website :D
-
+To run the server use the command: python manage.py runserver --insecure
 
 ## Programming / Database
 We used 4 programming languages: Python, JavaScript, HTML and CSS.
