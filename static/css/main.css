@@ -149,7 +149,16 @@ body {
 }
 
 #deals-title {
-    font-family: italic;
+  font-size: 50px;
+  text-align: center;
+}
+
+.profile-title {
+    font-size: 50px;
+    text-align: center;
+}
+
+.contact-title {
     font-size: 50px;
     text-align: center;
 }
@@ -434,7 +443,7 @@ li {
 }
 
 .confirmation-box {
-  background-color: white;
+  background-color: rgb(255, 190, 0);
   border: 8px solid #ccc;
   padding: 20px;
   text-align: center;
@@ -442,6 +451,7 @@ li {
   margin: 0 auto;
   margin-top: 50px;
   animation: borderFlash 2s infinite;
+    border-radius: 10px;
 }
 
 .confirmation-box h1 {
@@ -786,4 +796,15 @@ li {
 
 #animation2:hover {
     transform: scale(1.1);
+}
+
+.review-page {
+    background-color: rgb(255, 190, 0);
+    text-align: center;
+    border: 5px solid red;
+    border-radius: 10px;
+    margin-right: 15%;
+    margin-left: 15%;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
