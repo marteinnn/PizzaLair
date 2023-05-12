@@ -170,3 +170,8 @@ def pickpayment(request):
 @login_required
 def confirmation(request):
     return render(request, 'cart/confirmation.html')
+
+@login_required
+def clear_cart_and_redirect(request):
+    clear_cart(request)
+    return redirect('frontpage-index')

@@ -19,5 +19,6 @@ urlpatterns = [
     path('payment', views.payment, name="payment"),
     path('reviews', views.review, name="review"),
     path('pick-payment', views.pickpayment, name="pick-payment"),
-    path('confirmation', views.confirmation, name="confirmation")
+    path('confirmation', views.confirmation, name="confirmation"),
+    path('clear-cart-and-redirect/', views.clear_cart_and_redirect, name='clear_cart_and_redirect'),
 ]
