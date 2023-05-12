@@ -4,11 +4,11 @@
   <img class="details-img" src="../static/images/{{ pizza.image }}">
   <div class="details-info">
     <h1 class="details-name">{{ pizza.name }}</h1>
-    <ul>
-      {% for topping in pizza.toppings.all %}
-      <li>{{ topping.name }}</li>
+    <p>
+      {% for topping in toppings %}
+      {{ topping.name }},
       {% endfor %}
-    </ul>
+    </p>
     <p>{{ pizza.description }}</p>
     <h2>{{ pizza.price }} $</h2>
     <form method="POST" action="{% url 'add_to_cart' pizza.PID %}">
